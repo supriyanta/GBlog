@@ -1,0 +1,27 @@
+{
+	"name": "gblog",
+	"version": "1.0.0",
+	"description": "A simple Blog app",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "nodemon index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/supriyanta/GBlog.git"
+	},
+	"author": "",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/supriyanta/GBlog/issues"
+	},
+	"homepage": "https://github.com/supriyanta/GBlog#readme",
+	"dependencies": {
+		"apollo-server": "^2.4.8",
+		"graphql": "^14.1.1",
+		"graphql-tools": "^4.0.4",
+		"lodash": "^4.17.11",
+		"mongoose": "^5.4.17"
+	}
+}
