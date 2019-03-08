@@ -1,4 +1,6 @@
 const Story = require("../story/story.model");
+const Topic = require("../topic/topic.model");
+const { pubSub, STORY_CREATED } = require("../config");
 
 const storyTypeDefs = `
 
@@ -7,7 +9,7 @@ const storyTypeDefs = `
         name: String!
         description: String!
 		topicId: ID!
-		type: Topic
+		topic: Topic!
     }
 
     input StoryInput {
@@ -18,7 +20,7 @@ const storyTypeDefs = `
 
     extend type Query {
         stories(topicId: ID!): [Story!]
-        story(id: ID!): Story
+        story(id: ID!): Story!
     }
 
     extend type Mutation {
@@ -27,6 +29,12 @@ const storyTypeDefs = `
 `;
 
 const storyResolvers = {
+	Story: {
+		topic: async ({ topicId }) => {
+			const topic = await Topic.findById(topicId);
+			return topic;
+		}
+	},
 	Query: {
 		stories: async (_, { topicId }) => {
 			const stories = await Story.find({ topicId });
@@ -41,6 +49,7 @@ const storyResolvers = {
 		addStory: async (_, { input }) => {
 			const newStory = new Story(input);
 			const story = await newStory.save();
+			pubSub.publish(STORY_CREATED, { storyAdded: story });
 			return story;
 		}
 	}
