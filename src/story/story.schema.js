@@ -6,7 +6,8 @@ const storyTypeDefs = `
         id: ID!
         name: String!
         description: String!
-        topicId: ID!
+		topicId: ID!
+		type: Topic
     }
 
     input StoryInput {
@@ -16,12 +17,12 @@ const storyTypeDefs = `
     }
 
     extend type Query {
-        stories(topicId: ID!): [Story!]!
-        story(id: ID!): Story!
+        stories(topicId: ID!): [Story!]
+        story(id: ID!): Story
     }
 
     extend type Mutation {
-        addStory(input: StoryInput): Story!
+        addStory(input: StoryInput!): Story!
     }
 `;
 
@@ -39,7 +40,7 @@ const storyResolvers = {
 	Mutation: {
 		addStory: async (_, { input }) => {
 			const newStory = new Story(input);
-			const story = await newStory;
+			const story = await newStory.save();
 			return story;
 		}
 	}
