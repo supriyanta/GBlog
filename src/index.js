@@ -7,6 +7,6 @@ const typeDefs = [root, topicTypeDefs, storyTypeDefs];
 const resolvers = merge(topicResolvers, storyResolvers);
 
 module.exports = {
-	typeDefs: typeDefs,
-	resolvers: resolvers
+	typeDefs,
+	resolvers
 };
