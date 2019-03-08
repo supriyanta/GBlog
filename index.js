@@ -1,11 +1,11 @@
-const { ApolloServer } = require("apollo-server");
+const express = require("express");
+const { createServer } = require("http");
+const cors = require("cors");
+const { ApolloServer } = require("apollo-server-express");
 const { makeExecutableSchema } = require("graphql-tools");
 const mongoose = require("mongoose");
-const { merge } = require("lodash");
 
-const { topicTypeDefs, topicResolvers } = require("./src/topic/topic.schema");
-const { storyTypeDefs, storyResolvers } = require("./src/story/story.schema");
-const root = require("./src/root");
+const { typeDefs, resolvers } = require("./src");
 
 mongoose
 	.connect("mongodb://localhost/gblog", { useNewUrlParser: true })
@@ -13,17 +13,35 @@ mongoose
 	.catch(() => console.log("DB connection failed!"));
 mongoose.set("useCreateIndex", true);
 
+const app = express();
+app.use(cors());
+
 const schema = makeExecutableSchema({
-	typeDefs: [root, topicTypeDefs, storyTypeDefs],
-	resolvers: merge(topicResolvers, storyResolvers)
+	typeDefs,
+	resolvers
 });
 
-const server = new ApolloServer({
+const apolloServer = new ApolloServer({
 	schema,
 	formatError: error => {
 		console.log(error);
 		return error;
 	}
 });
+apolloServer.applyMiddleware({ app });
+const httpServer = createServer(app);
+apolloServer.installSubscriptionHandlers(httpServer);
 
-server.listen().then(({ url }) => console.log(`🚀  server running at ${url}`));
+const PORT = 4000;
+httpServer.listen({ port: PORT }, () => {
+	console.log(
+		`🚀  server running at http://localhost:${PORT}${
+			apolloServer.graphqlPath
+		}`
+	);
+	console.log(
+		`🚀  server running at ws://localhost:${PORT}${
+			apolloServer.graphqlPath
+		}`
+	);
+});
