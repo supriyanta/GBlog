@@ -12,7 +12,7 @@ const topicTypeDefs = `
     }
 
     extend type Query {
-        topics: [Topic!]!
+        topics: [Topic!]
         topic(id: ID!): Topic!
     }
 
@@ -23,11 +23,11 @@ const topicTypeDefs = `
 
 const topicResolvers = {
 	Query: {
-		topic: async (_, arg) => {
+		topics: async (_, arg) => {
 			const topics = await Topic.find({});
 			return topics;
 		},
-		topics: async (_, { id }) => {
+		topic: async (_, { id }) => {
 			const topic = await Topic.findById(id);
 			return topic;
 		}
