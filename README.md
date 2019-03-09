@@ -34,13 +34,13 @@ Start the mongodb server in your local machine
 
 `sudo service mongod start`
 
-Open the terminal.
-
-start the npm server 
+Open the terminal and start the server 
 
 `npm start`
 
-And use [http://localhost:4000/graphql](http://localhost:4000/graphql) and the graphql playground will open up.
+And open [http://localhost:4000/graphql](http://localhost:4000/graphql) in a browser and the graphql playground will open up.
+
+***
 
 #### Mutation
 
@@ -70,6 +70,8 @@ In the playground type the following to create a story...
 
 ![addStory](./images/mutation_addStory.png "addStory Mutation")
 
+***
+
 #### Query
 
 ##### topic:
@@ -96,6 +98,8 @@ In the playground type the following to query the stories...
 
 ![stories](./images/query_stories.png "stories Query")
 
+***
+
 #### Subscription
 
 ##### storyAdded:
@@ -106,6 +110,6 @@ To subscribe a Topic, it should have the following parameters.
 | ------------- |:-------------:| :-----:|
 | topicId      | *ID* | id of the Topic |
 
-Open two browser window and type the following to subscribe a topic and get the realtime update someone publish a story...
+Open two browser window and type the following to subscribe a topic and get the realtime update when someone publish a story...
 
 ![storyAdded](./images/subscription_storyAdded.png "storyAdded subscribe")
