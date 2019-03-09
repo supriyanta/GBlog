@@ -40,8 +40,13 @@ start the npm server
 
 `npm start`
 
-And use [localhost:4000](https://) to browse.
+And use [localhost:4000/graphql](https://) and the graphql playground will open up.
 
-### Mutation
+#### Mutation
 
+A topic should have the following parameters.
+
+    `name: <String>` Name of the Topic
+
+In the playground type the following to create a topic...
 
