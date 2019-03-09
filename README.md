@@ -44,11 +44,12 @@ And use [http://localhost:4000/graphql](http://localhost:4000/graphql) and the g
 
 #### Mutation
 
-A topic should have the following parameters.
+###### addTopic
+    A topic should have the following parameters.
 
-| Params        | Type          | Description  |
-| ------------- |:-------------:| :-----:|
-| name      | *String* | Name of the topic |
+    | Params        | Type          | Description  |
+    | ------------- |:-------------:| :-----:|
+    | name      | *String* | Name of the topic |
 
 In the playground type the following to create a topic...
 
