@@ -1,5 +1,5 @@
 # GBlog
-A backend implementation of a blog app where you can get real-time updates from story of a particular topic when someone publishes a new story.
+>A backend implementation of a blog app where you can get real-time updates from story of a particular topic when someone publishes a new story.
 
 # User Guide
 
@@ -52,3 +52,4 @@ A topic should have the following parameters.
 
 In the playground type the following to create a topic...
 
+![addTopic](./images/mutation_addTopic.png "addTopic Mutation")
