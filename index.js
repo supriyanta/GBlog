@@ -6,9 +6,10 @@ const { makeExecutableSchema } = require("graphql-tools");
 const mongoose = require("mongoose");
 
 const { typeDefs, resolvers } = require("./src");
+const { mongodbUrl } = require("./keys");
 
 mongoose
-	.connect("mongodb://localhost/gblog", { useNewUrlParser: true })
+	.connect(mongodbUrl, { useNewUrlParser: true })
 	.then(() => console.log("DB connected!"))
 	.catch(() => console.log("DB connection failed!"));
 mongoose.set("useCreateIndex", true);
@@ -36,12 +37,12 @@ const PORT = 4000;
 httpServer.listen({ port: PORT }, () => {
 	console.log(
 		`🚀  server running at http://localhost:${PORT}${
-			apolloServer.graphqlPath
+		apolloServer.graphqlPath
 		}`
 	);
 	console.log(
 		`🚀  server running at ws://localhost:${PORT}${
-			apolloServer.graphqlPath
+		apolloServer.graphqlPath
 		}`
 	);
 });
