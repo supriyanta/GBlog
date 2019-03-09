@@ -4,14 +4,14 @@
 	"description": "A simple Blog app",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "nodemon index.js"
+		"dev-server": "nodemon index.js",
+		"start": "node index.js"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/supriyanta/GBlog.git"
 	},
-	"author": "",
+	"author": "supriyanta34@gmail.com",
 	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/supriyanta/GBlog/issues"
@@ -27,5 +27,8 @@
 		"http": "0.0.0",
 		"lodash": "^4.17.11",
 		"mongoose": "^5.4.17"
+	},
+	"devDependencies": {
+		"nodemon": "^1.18.10"
 	}
 }
