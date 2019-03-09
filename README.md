@@ -22,7 +22,7 @@ And run npm install to install the dependencies.
 Change the MongoDB url to user local mongodb database url in *GBlog/keys.js*.
 
 example:
-```
+```javascript
 module.exports = {
         mongoURI: "mongodb://localhost:27017/admin"
 }
@@ -40,13 +40,15 @@ start the npm server
 
 `npm start`
 
-And use [localhost:4000/graphql](https://) and the graphql playground will open up.
+And use [http://localhost:4000/graphql](http://localhost:4000/graphql) and the graphql playground will open up.
 
 #### Mutation
 
 A topic should have the following parameters.
 
-    `name: <String>` Name of the Topic
+| Params        | Type          | Description  |
+| ------------- |:-------------:| :-----:|
+| name      | *String* | Name of the topic |
 
 In the playground type the following to create a topic...
 
