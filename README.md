@@ -44,13 +44,28 @@ And use [http://localhost:4000/graphql](http://localhost:4000/graphql) and the g
 
 #### Mutation
 
-###### addTopic
-    A topic should have the following parameters.
+##### addTopic:
 
-    | Params        | Type          | Description  |
-    | ------------- |:-------------:| :-----:|
-    | name      | *String* | Name of the topic |
+A Topic should have the following parameters.
+
+| Params        | Type          | Description  |
+| ------------- |:-------------:| :-----:|
+| name      | *String* | Name of the Topic |
 
 In the playground type the following to create a topic...
 
 ![addTopic](./images/mutation_addTopic.png "addTopic Mutation")
+
+##### addStory:
+
+A Story should have the following parameters.
+
+| Params        | Type          | Description  |
+| ------------- |:-------------:| :-----:|
+| name      | *String* | Name of the Story |
+| description  | *String* | Description of the Story |
+| topicId      | *ID* | id if the Topic under which the story will publish |
+
+In the playground type the following to create a topic...
+
+![addTopic](./images/mutation_addStory.png "addTopic Mutation")
