@@ -24,7 +24,7 @@ Change the MongoDB url to user local mongodb database url in *GBlog/keys.js*.
 example:
 ```javascript
 module.exports = {
-        mongoURI: "mongodb://localhost:27017/admin"
+    mongodbUrl: "mongodb://localhost/gblog"
 }
 ```
 
