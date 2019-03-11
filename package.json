@@ -18,7 +18,7 @@
 	},
 	"homepage": "https://github.com/supriyanta/GBlog#readme",
 	"dependencies": {
-		"apollo-server-express": "^2.4.8",
+		"@aerogear/voyager-server": "^0.5.0",
 		"cors": "^2.8.5",
 		"express": "^4.16.4",
 		"graphql": "^14.1.1",
@@ -26,7 +26,8 @@
 		"graphql-tools": "^4.0.4",
 		"http": "0.0.0",
 		"lodash": "^4.17.11",
-		"mongoose": "^5.4.17"
+		"mongoose": "^5.4.17",
+		"subscriptions-transport-ws": "^0.9.15"
 	},
 	"devDependencies": {
 		"nodemon": "^1.18.10"
