@@ -19,6 +19,7 @@ const storyTypeDefs = `
     }
 
     extend type Query {
+		storiesAll: [Story!]
         stories(topicId: ID!): [Story!]
         story(id: ID!): Story!
     }
@@ -36,6 +37,10 @@ const storyResolvers = {
 		}
 	},
 	Query: {
+		storiesAll: async (_, arg) => {
+			const stories = await Story.find({});
+			return stories;
+		},
 		stories: async (_, { topicId }) => {
 			const stories = await Story.find({ topicId });
 			return stories;
