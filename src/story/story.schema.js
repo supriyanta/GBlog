@@ -10,6 +10,7 @@ const storyTypeDefs = `
         description: String!
 		topicId: ID!
 		topic: Topic!
+		date_added: String
     }
 
     input StoryInput {
@@ -38,11 +39,11 @@ const storyResolvers = {
 	},
 	Query: {
 		storiesAll: async (_, arg) => {
-			const stories = await Story.find({});
+			const stories = await Story.find({}).sort("-date_added");
 			return stories;
 		},
 		stories: async (_, { topicId }) => {
-			const stories = await Story.find({ topicId });
+			const stories = await Story.find({ topicId }).sort("-date_added");
 			return stories;
 		},
 		story: async (_, { id }) => {
