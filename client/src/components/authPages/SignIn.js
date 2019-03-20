@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { withApollo } from "react-apollo";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { graphql } from "react-apollo";
 import { userLoginQuery } from "../../schema/queries";
 import Header from "./Header";
+
+import { loginMutation } from "../../schema/localQueries";
 
 class SignIn extends Component {
 	state = {
@@ -32,7 +34,8 @@ class SignIn extends Component {
 					variables: { input: { email, password } }
 				});
 				console.log(response);
-				this.props.login();
+				// mutation: writes in local state in apollo cache
+				this.props.mutate();
 				this.props.history.push("/");
 			} catch (err) {
 				const errMsg = err.message.split(":")[1].trim();
@@ -42,7 +45,7 @@ class SignIn extends Component {
 	};
 
 	render() {
-		// console.log(this.props);
+		console.log("sign in", this.props);
 		return (
 			<div className="container">
 				<Header />
@@ -94,20 +97,6 @@ class SignIn extends Component {
 		);
 	}
 }
-const mapStateToProps = state => {
-	return {
-		authed: state.isLoggedin
-	};
-};
-
-const mapDispatchToProps = dispatch => {
-	return {
-		login: () => dispatch({ type: "LOGIN" })
-	};
-};
 
 const SignInView = withApollo(SignIn);
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(SignInView);
+export default graphql(loginMutation)(SignInView);
