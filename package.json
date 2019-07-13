@@ -25,7 +25,7 @@
 		"graphql-subscriptions": "^1.0.0",
 		"graphql-tools": "^4.0.4",
 		"http": "0.0.0",
-		"lodash": "^4.17.11",
+		"lodash": "^4.17.13",
 		"mongoose": "^5.4.17",
 		"subscriptions-transport-ws": "^0.9.15"
 	},
