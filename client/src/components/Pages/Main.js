@@ -1,75 +1,48 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
-import { connect } from "react-redux";
-
-// import Sidebar from "./SideBar/Sidebar";
+import { BrowserRouter, Switch } from "react-router-dom";
+import { graphql } from "react-apollo";
+import PrivateRoute from "./PrivateRoute";
 import Topic from "./Topic";
 import AllStories from "./AllStories";
 import SignIn from "../authPages/SignIn";
 import SignUp from "../authPages/SignUp";
 import CreateView from "./Create/CreateView";
 
-const PrivateRoute = ({ component: Component, authed, ...rest }) => {
-	if (rest.path === "/login" || rest.path === "/register") {
-		return (
-			<Route
-				{...rest}
-				render={props => {
-					return authed === false ? (
-						<Component {...props} />
-					) : (
-						<Redirect to="/" />
-					);
-				}}
-			/>
-		);
-	} else {
-		return (
-			<Route
-				{...rest}
-				render={props => {
-					return authed === true ? (
-						<Component {...props} />
-					) : (
-						<Redirect to="/login" />
-					);
-				}}
-			/>
-		);
-	}
-};
+import { authQuery } from "../../schema/localQueries";
 
 class Main extends Component {
 	render() {
+		// console.log(this.props);
+		const { isLoggedin: authed } = this.props.data;
 		return (
 			<div>
 				<BrowserRouter>
 					<Switch>
 						<PrivateRoute
-							authed={this.props.authed}
+							authed={authed}
 							exact
 							path="/"
 							component={AllStories}
 						/>
 						<PrivateRoute
-							authed={this.props.authed}
+							authed={authed}
 							exact
 							path="/create"
 							component={CreateView}
 						/>
 						<PrivateRoute
-							authed={this.props.authed}
+							authed={authed}
 							exact
 							path="/topic/:topicId"
 							component={Topic}
 						/>
 						<PrivateRoute
-							authed={this.props.authed}
+							authed={authed}
 							path="/login"
 							component={SignIn}
 						/>
 						<PrivateRoute
-							authed={this.props.authed}
+							authed={authed}
 							path="/register"
 							component={SignUp}
 						/>
@@ -79,10 +52,5 @@ class Main extends Component {
 		);
 	}
 }
-const mapStateToProps = state => {
-	return {
-		authed: state.isLoggedin
-	};
-};
 
-export default connect(mapStateToProps)(Main);
+export default graphql(authQuery)(Main);

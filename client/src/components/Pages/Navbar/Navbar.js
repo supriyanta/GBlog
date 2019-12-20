@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { graphql } from "react-apollo";
+
+import { logoutMutation } from "../../../schema/localQueries";
 
 const Navbar = props => {
 	const signoutHandler = e => {
 		e.preventDefault();
-		props.signout();
+		// mutation: erase the user from local apollo cache
+		props.mutate();
 	};
 	return (
 		<div id="navbar">
@@ -35,12 +38,4 @@ const Navbar = props => {
 	);
 };
 
-const mapDispatchToProps = dispatch => {
-	return {
-		signout: () => dispatch({ type: "LOGOUT" })
-	};
-};
-export default connect(
-	null,
-	mapDispatchToProps
-)(Navbar);
+export default graphql(logoutMutation)(Navbar);
